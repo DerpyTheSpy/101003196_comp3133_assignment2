@@ -8,7 +8,7 @@
     "prod": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng deploy"
+    "deploy": "ng deploy --base-href=/101003196_comp3133_assignment2/"
   },
   "private": true,
   "dependencies": {
