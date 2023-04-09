@@ -6,15 +6,18 @@ import { SignupComponent } from './signup/signup.component';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import { ValidationguardGuard } from './vanguard';
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
-const routes: Routes = [
-  { path: 'dashboard', component: EmployeeListComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'dashboard/:id', component: ViewEmployeeComponent },
-  { path: 'dashboard/edit/:id', component: EmployeeUpdateComponent },
-  { path: 'add', component: AddEmployeeComponent },
+
+
+const routes: Routes = [{
+  path: 'dashboard', component: EmployeeListComponent, canActivate: [ValidationguardGuard]
+},
+{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+{path: 'login', component: LoginComponent},
+{path: 'signup', component: SignupComponent},
+{path: 'dashboard/:id', component: ViewEmployeeComponent},
+{path: 'dashboard/edit/:id', component: EmployeeUpdateComponent},
   { path: 'dashboard/delete/:id', component: EmployeeDeleteComponent}
 ];
 
