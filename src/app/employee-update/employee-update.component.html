@@ -1,0 +1,44 @@
+<div *ngIf="employee"></div>
+<form [formGroup]="employeeForm" (ngSubmit)="updateEmployee()">
+    <div>
+      <label for="first_name">First Name:</label>
+      <input type="text" formControlName="first_name" [(ngModel)]="employee.first_name" />
+      <div *ngIf="employeeForm.get('first_name')?.invalid && employeeForm.get('first_name')?.touched">
+        First name is required.
+      </div>
+    </div>
+    <div>
+      <label for="last_name">Last Name:</label>
+      <input type="text" formControlName="last_name" [(ngModel)]="employee.last_name" />
+      <div *ngIf="employeeForm.get('last_name')?.invalid && employeeForm.get('last_name')?.touched">
+        Last name is required.
+      </div>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email" [(ngModel)]="employee.email" />
+      <div *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+        Email is required.
+      </div>
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <select formControlName="gender" [(ngModel)]="employee.gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <div *ngIf="employeeForm.get('gender')?.invalid && employeeForm.get('gender')?.touched">
+        Gender is required.
+      </div>
+    </div>
+    <div>
+      <label for="salary">Salary:</label>
+      <input type="number" formControlName="salary" [(ngModel)]="employee.salary" />
+      <div *ngIf="employeeForm.get('salary')?.invalid && employeeForm.get('salary')?.touched">
+        Salary is required and must be a number.
+      </div>
+    </div>
+    <button type="submit" [disabled]="employeeForm.invalid">Submit</button>
+</form>
