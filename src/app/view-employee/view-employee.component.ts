@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../Employee';
 import { Apollo, gql } from 'apollo-angular';
-import { EmployeeServicesService } from '../employee-services.service';
+import { EmployeeServicesService } from '../employee-service.service';
 
 @Component({
   selector: 'app-view-employee',

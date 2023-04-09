@@ -56,10 +56,6 @@ export class AddEmployeeComponent {
         this.router.navigate(['dashboard']);
    
       
-    // Add the new employee to the list
-    
-      
-      
     });
 
   }
