@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeServicesService } from '../employee-services.service';
+import { EmployeeServicesService } from '../employee-service.service';
 import { Employee } from '../Employee';
 import { FormGroup, Validators , FormBuilder} from '@angular/forms';
 import { Apollo } from 'apollo-angular';

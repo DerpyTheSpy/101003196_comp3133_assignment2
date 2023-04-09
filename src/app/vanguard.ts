@@ -24,7 +24,7 @@ export class ValidationguardGuard implements CanActivate {
          }
       } else {
          return this.router.parseUrl('login');
-      }
+      }      
   }
 
 }

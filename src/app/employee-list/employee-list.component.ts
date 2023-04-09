@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
-import { EmployeeServicesService } from '../employee-services.service';
+import { EmployeeServicesService } from '../employee-service.service';
 
 @Component({
   selector: 'app-employee-list',

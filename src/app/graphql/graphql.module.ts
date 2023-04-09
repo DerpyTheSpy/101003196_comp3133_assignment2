@@ -3,7 +3,7 @@ import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 
 import { HttpLink } from 'apollo-angular/http';
 import { NgModule } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { setContext } from '@apollo/client/link/context';
 
 const uri = environment.graphqlURL; // <-- add the URL of the GraphQL server here

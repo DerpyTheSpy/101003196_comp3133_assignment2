@@ -11,6 +11,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphQLModule } from './graphql/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     AddEmployeeComponent,
     ViewEmployeeComponent,
     LoginComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeDeleteComponent
   
   ],
   imports: [

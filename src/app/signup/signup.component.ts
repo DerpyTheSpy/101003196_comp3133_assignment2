@@ -26,6 +26,10 @@ export class SignupComponent {
 
   }
 
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
+
   onSubmit() {
     this.username = this.signUpForm.controls['username'].value;
     this.email = this.signUpForm.controls['email'].value;

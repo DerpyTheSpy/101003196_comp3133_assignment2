@@ -20,5 +20,8 @@
         password is required.
       </div>
     </div>
-    <button type="submit" [disabled]="signUpForm.invalid">Submit</button>
+    <div>
+      <button type="submit" [disabled]="signUpForm.invalid">Submit</button>
+      <button type="button" (click)="goToLogin()">Login</button>
+    </div>
   </form>

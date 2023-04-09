@@ -19,6 +19,13 @@ export class LoginComponent {
     });
   }
 
+
+  goToSignUp() {
+    this.router.navigate(['signup']);
+  }
+
+  
+  
   login() {
 
     this.username = this.loginForm.controls['username'].value;
