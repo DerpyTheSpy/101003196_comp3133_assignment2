@@ -102,16 +102,16 @@ export class EmployeeServicesService {
       },
       refetchQueries: [{
         query: gql`
-          query {
-            getEmployees {
-              id
-              firstName
-              lastName
-              email
-              gender
-              salary
-            }
+        query {
+          getEmployees {
+            id
+            firstName
+            lastName
+            email
+            salary
+            gender
           }
+        }
         `
       }]
     });
