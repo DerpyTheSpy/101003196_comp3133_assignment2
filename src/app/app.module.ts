@@ -10,8 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphQLModule } from './graphql/graphql.module';
-import { HttpClientModule } from '@angular/common/http';
 import { EmployeeDeleteComponent } from './employee-delete/employee-delete.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule, Apollo, APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+
 
 
 @NgModule({
@@ -29,14 +34,27 @@ import { EmployeeDeleteComponent } from './employee-delete/employee-delete.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GraphQLModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    ApolloModule,
+    ReactiveFormsModule,
+    HttpLinkModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          link: httpLink.create({
+            uri: 'https://101003196-comp-3133-assignment1.vercel.app/',
+          }),
+          cache: new InMemoryCache(),
+        };
+      },
+      deps: [HttpLink],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(graphqlModule: GraphQLModule) {}
+  constructor(private apollo: Apollo) {}
  }
