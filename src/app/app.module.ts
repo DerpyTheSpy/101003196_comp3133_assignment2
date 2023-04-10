@@ -1,8 +1,3 @@
-import { ApolloClientOptions, InMemoryCache, ApolloClient } from '@apollo/client';
-import { APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-import { RouterModule, Routes } from '@angular/router';
-import { Apollo } from 'apollo-angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,21 +34,7 @@ import { EmployeeDeleteComponent } from './employee-delete/employee-delete.compo
     HttpClientModule,
     FormsModule
   ],
-  providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: (httpLink: HttpLink) => {
-        return {
-          cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri: 'https://101003196-comp-3133-assignment1.vercel.app/'
-          })
-        };
-      },
-      deps: [HttpLink]
-    },
-    Apollo
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
