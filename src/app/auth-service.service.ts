@@ -30,7 +30,7 @@ export class AuthServiceService {
     return this.apollo.mutate({
       mutation: gql`
       query GetUser($username: String!, $password: String!){
-        LoginComponent(username: $username, password: $password){
+        Login(username: $username, password: $password){
           email
           id
           password
