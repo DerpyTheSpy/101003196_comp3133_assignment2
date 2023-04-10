@@ -3,12 +3,26 @@ import { AuthServiceService } from '../auth-service.service';
 import { ExecutionPatchResult } from '@apollo/client/core';
 import { Router } from '@angular/router';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Apollo, gql } from 'apollo-angular';
+
+const CREATE_USER_MUTATION = gql`
+  mutation Mutation($username: String!, $email: String!, $password: String!) {
+    createUser(username: $username, email: $email, password: $password) {
+      id
+      username
+      email
+    }
+  }
+`;
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
+
 export class SignupComponent {
   username: string = '';
   email: string = '';
@@ -16,15 +30,26 @@ export class SignupComponent {
   errorMessage: string = '';
   signUpForm!: FormGroup;
 
-  constructor(private authService: AuthServiceService, private router: Router, private form: FormBuilder ) {
+  constructor(private authService: AuthServiceService, private router: Router, private form: FormBuilder, private apollo: Apollo ) {
     this.signUpForm = this.form.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
-     
+
+    this.apollo.mutate({
+      mutation: CREATE_USER_MUTATION,
+      variables: {
+        username: this.username,
+        email: this.email,
+        password: this.password
+      }
+    }).subscribe((result) => {
+      console.log(result);
+    });
 
   }
+  
 
   goToLogin() {
     this.router.navigate(['login']);

@@ -3,6 +3,16 @@ import { Employee } from '../Employee';
 import { EmployeeServicesService } from '../employee-service.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Apollo, gql } from 'apollo-angular';
+
+
+const CREATE_EMPLOYEE_MUTATION = gql`
+  mutation CreateEmployee($name: String!, $lastname: String!, $email: String!, $salary: Float!, $gender: String!) {
+    createEmployee(name: $name, lastname: $lastname, email: $email, salary: $salary, gender: $gender) {
+      id
+    }
+  }
+`;
 
 @Component({
 selector: 'app-employee-form',
@@ -21,10 +31,10 @@ export class AddEmployeeComponent {
 
  
 
-  constructor(private employeeService: EmployeeServicesService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private employeeService: EmployeeServicesService, private router: Router, private formBuilder: FormBuilder, private apollo: Apollo) {
     this.employeeForm = this.formBuilder.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', Validators.required],
       gender: ['', Validators.required],
       salary: [null, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]]
@@ -35,8 +45,8 @@ export class AddEmployeeComponent {
 
   onSubmit() {
 
-    this.fn = this.employeeForm.controls['first_name'].value;
-    this.ln = this.employeeForm.controls['last_name'].value;
+    this.fn = this.employeeForm.controls['firstName'].value;
+    this.ln = this.employeeForm.controls['lastName'].value;
     this.em = this.employeeForm.controls['email'].value;
     this.g = this.employeeForm.controls['gender'].value;
     this.s = this.employeeForm.controls['salary'].value;

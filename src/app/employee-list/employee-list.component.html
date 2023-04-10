@@ -19,8 +19,8 @@
     </thead>
     <tbody>
         <tr *ngFor="let employee of employeeData">
-            <td>{{employee.first_name}}</td>
-            <td>{{employee.last_name}}</td>
+            <td>{{employee.firstName}}</td>
+            <td>{{employee.lastName}}</td>
             <td>{{employee.email}}</td>
             <td>{{employee.salary}}</td>
             <td> <button (click)="employeeDetails(employee.id)" class='btn btn-info' data-toggle="modal"

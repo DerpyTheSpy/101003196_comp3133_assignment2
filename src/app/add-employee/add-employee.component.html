@@ -1,15 +1,15 @@
 <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
     <div>
-      <label for="first_name">First Name:</label>
-      <input type="text" formControlName="first_name" />
-      <div *ngIf="employeeForm.get('first_name')?.invalid && employeeForm.get('first_name')?.touched">
+      <label for="firstName">First Name:</label>
+      <input type="text" formControlName="firstName" />
+      <div *ngIf="employeeForm.get('firstName')?.invalid && employeeForm.get('firstName')?.touched">
         First name is required.
       </div>
     </div>
     <div>
-      <label for="last_name">Last Name:</label>
-      <input type="text" formControlName="last_name" />
-      <div *ngIf="employeeForm.get('last_name')?.invalid && employeeForm.get('last_name')?.touched">
+      <label for="lastName">Last Name:</label>
+      <input type="text" formControlName="lastName" />
+      <div *ngIf="employeeForm.get('lastName')?.invalid && employeeForm.get('lastName')?.touched">
         Last name is required.
       </div>
     </div>

@@ -9,49 +9,53 @@ import { EmployeeServicesService } from '../employee-service.service';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-addEmployee() {
-  this.router.navigate(['add']);
-}
+  employeeData: any[] = [];
 
-    
-    employeeData: any[] = [];
-    constructor(private router: Router, private empService: EmployeeServicesService) { }
-    ngOnInit(): void {
-      this.empService.getAllEmployees().subscribe((result: any) => {
+  constructor(private router: Router, private apollo: Apollo, private empService: EmployeeServicesService) { }
+
+  ngOnInit(): void {
+    this.apollo
+      .query({
+        query: gql`
+          query {
+            getEmployees {
+              id
+              firstName
+              lastName
+              email
+              salary
+              gender
+            }
+          }
+        `,
+      })
+      .subscribe((result: any) => {
         console.log(result.data.getEmployees);
         this.employeeData = result.data.getEmployees;
       });
-      
-    }
-    
-    
+  }
 
-    employeeDetails(id: any) {
-        this.router.navigate(['dashboard', id]);
-    }
-    deleteEmployee(id: any) {
-        this.empService.deleteEmployee(id).subscribe((result: any) => {
-           console.log(result.data.deleteEmployee);
+  addEmployee() {
+    this.router.navigate(['add']);
+  }
 
-          
-           this.router.navigate(['dashboard']);
-           
-      
-        });
+  employeeDetails(id: any) {
+    this.router.navigate(['dashboard', id]);
+  }
 
-    
+  deleteEmployee(id: any) {
+    this.empService.deleteEmployee(id).subscribe((result: any) => {
+      console.log(result.data.deleteEmployee);
+      this.router.navigate(['dashboard']);
+    });
+  }
 
-     
-       
-    }
-    updateEmployee(id: any) {
-        this.router.navigate(['dashboard/edit', id]);
-    }
-    logout(){
+  updateEmployee(id: any) {
+    this.router.navigate(['dashboard/edit', id]);
+  }
 
-      localStorage.removeItem('token');
-      this.router.navigate(['login']);
-    }
-    
-
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
+  }
 }

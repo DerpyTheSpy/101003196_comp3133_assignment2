@@ -17,8 +17,8 @@ employee!: Employee;
   
   updatedEmployee: Employee = {
     id: '',
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     gender: '',
     salary: 0
@@ -32,8 +32,8 @@ employee!: Employee;
      private apollo: Apollo
   ) { 
     this.employeeForm = this.formBuilder.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
       salary: [null, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]]
@@ -50,8 +50,8 @@ employee!: Employee;
 
   updateEmployee(): void {
     this.updatedEmployee.id = this.id;
-    this.updatedEmployee.first_name = this.employeeForm.controls['first_name'].value;
-    this.updatedEmployee.last_name = this.employeeForm.controls['last_name'].value;
+    this.updatedEmployee.firstName = this.employeeForm.controls['firstName'].value;
+    this.updatedEmployee.lastName = this.employeeForm.controls['lastName'].value;
     this.updatedEmployee.email = this.employeeForm.controls['email'].value;
     this.updatedEmployee.gender = this.employeeForm.controls['gender'].value;
     this.updatedEmployee.salary = this.employeeForm.controls['salary'].value;

@@ -17,8 +17,8 @@ export class EmployeeServicesService {
         query {
           getEmployees {
             id
-            first_name
-            last_name
+            firstName
+            lastName
             email
             gender
             salary
@@ -33,8 +33,8 @@ export class EmployeeServicesService {
       query: gql`
         query GetEmployeeById($id: ID!) {
           getEmployeeByID(id: $id) {
-            first_name
-            last_name
+            firstName
+            lastName
             email
             gender
             salary
@@ -47,13 +47,13 @@ export class EmployeeServicesService {
     }).valueChanges;
   }
 
-  createEmployee(first_name : string,last_name: string,gender : string,email : string,salary: number) {
+  createEmployee(firstName : string,lastName: string,gender : string,email : string,salary: number) {
     return this.apollo.mutate({
       mutation: gql`
         mutation addEmployee($fn: String!, $ln: String!, $g: String!, $e: String!, $s: Float!) {
-          addEmployee(first_name: $fn, last_name: $ln, gender: $g, email: $e, salary: $s) {
-            first_name
-            last_name
+          addEmployee(firstName: $fn, lastName: $ln, gender: $g, email: $e, salary: $s) {
+            firstName
+            lastName
             email
             gender
             salary
@@ -61,8 +61,8 @@ export class EmployeeServicesService {
         }
       `,
       variables: {
-        fn: first_name,
-        ln: last_name,
+        fn: firstName,
+        ln: lastName,
         g: gender,
         e: email,
         s: salary
@@ -72,8 +72,8 @@ export class EmployeeServicesService {
           query {
             getEmployees {
               id
-              first_name
-              last_name
+              firstName
+              lastName
               email
               gender
               salary
@@ -89,8 +89,8 @@ export class EmployeeServicesService {
       mutation: gql`
         mutation UpdateEmployee($update: EmployeeUpdateInput!) {
           updateEmployee(update: $update) {
-            first_name
-            last_name
+            firstName
+            lastName
             email
             gender
             salary
@@ -105,8 +105,8 @@ export class EmployeeServicesService {
           query {
             getEmployees {
               id
-              first_name
-              last_name
+              firstName
+              lastName
               email
               gender
               salary
@@ -135,8 +135,8 @@ export class EmployeeServicesService {
           query {
             getEmployees {
               id
-              first_name
-              last_name
+              firstName
+              lastName
               email
               gender
               salary

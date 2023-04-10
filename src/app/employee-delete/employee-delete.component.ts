@@ -2,6 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from '../Employee';
 import { EmployeeServicesService } from '../employee-service.service';
+import { Apollo, gql } from 'apollo-angular';
+
+const DELETE_EMPLOYEE_MUTATION = gql`
+  mutation Mutation($deleteEmployeeId: ID!) {
+    DeleteEmployee(id: $deleteEmployeeId) {
+      id
+      firstName
+      lastName
+      email
+      salary
+      gender
+    }
+  }
+`;
 
 @Component({
   selector: 'app-employee-delete',
@@ -14,7 +28,8 @@ export class EmployeeDeleteComponent implements OnInit {
   constructor(
     private employeeService: EmployeeServicesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private apollo: Apollo
   ) {}
 
   ngOnInit(): void {
@@ -25,13 +40,19 @@ export class EmployeeDeleteComponent implements OnInit {
       });
     }
   }
+
   goBack(): void {
     this.router.navigate(['/dashboard']);
   }
 
   deleteEmployee(): void {
     if (confirm('Are you sure you want to delete this employee?')) {
-      this.employeeService.deleteEmployee(this.employee.id).subscribe(
+      this.apollo.mutate({
+        mutation: DELETE_EMPLOYEE_MUTATION,
+        variables: {
+          deleteEmployeeId: this.employee.id
+        }
+      }).subscribe(
         () => {
           this.router.navigate(['/dashboard']);
         },
