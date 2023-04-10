@@ -32,9 +32,17 @@ addEmployee() {
     deleteEmployee(id: any) {
         this.empService.deleteEmployee(id).subscribe((result: any) => {
            console.log(result.data.deleteEmployee);
-           this.router.navigate(['dashboard']);
 
+          
+           this.router.navigate(['dashboard']);
+           
+      
         });
+
+    
+
+     
+       
     }
     updateEmployee(id: any) {
         this.router.navigate(['dashboard/edit', id]);

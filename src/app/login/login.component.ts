@@ -27,20 +27,18 @@ export class LoginComponent {
   
   
   login() {
-
-    this.username = this.loginForm.controls['username'].value;
-    this.password = this.loginForm.controls['password'].value;
     this.authService.loginUser(this.username, this.password)
       .subscribe((response: any) => {
         if (response.data.login.status) {
           // Login successful, store JWT token in localStorage
           localStorage.setItem('token', response.data.login.token);
-
-          this.router.navigate(['dashboard']);
+  
+          // Redirect to dashboard
+          this.router.navigate(['/dashboard']);
         } else {
           // Login failed, show error message to user
           alert(response.data.login.message);
         }
       });
-  }
+  }  
 }
