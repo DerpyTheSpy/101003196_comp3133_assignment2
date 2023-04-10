@@ -16,6 +16,7 @@ export class AuthServiceService {
               id
               username
               email
+              password
             }
           }
       `,
